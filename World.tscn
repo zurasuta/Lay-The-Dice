@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://DiceCharacter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://World.gd" type="Script" id=2]
+[ext_resource path="res://assets/background_p1.png" type="Texture" id=3]
+[ext_resource path="res://assets/goal_p.png" type="Texture" id=4]
+[ext_resource path="res://assets/table_p.png" type="Texture" id=5]
+[ext_resource path="res://assets/emotion-heart.png" type="Texture" id=6]
+
+[node name="World" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Background" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+centered = false
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="KeyPositions" type="Node2D" parent="."]
+
+[node name="StartPosition" type="Position2D" parent="KeyPositions"]
+position = Vector2( 840, 218 )
+
+[node name="CenterPosition" type="Position2D" parent="KeyPositions"]
+position = Vector2( 320, 185 )
+
+[node name="EndPosition" type="Position2D" parent="KeyPositions"]
+position = Vector2( -230, 218 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Table" type="Sprite" parent="."]
+position = Vector2( 319, 180 )
+texture = ExtResource( 5 )
+
+[node name="Goal" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+centered = false
+
+[node name="Dices" type="Node2D" parent="."]
+
+[node name="CurrentDice" parent="Dices" instance=ExtResource( 1 )]
+position = Vector2( 840, 220 )
+
+[node name="EmotionSprite" parent="Dices/CurrentDice/EmotionSlots/EmotionSlot" index="1"]
+texture = ExtResource( 6 )
+
+[node name="Tweens" type="Node" parent="."]
+
+[node name="TweenIn" type="Tween" parent="Tweens"]
+
+[node name="TweenOut" type="Tween" parent="Tweens"]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="tween_completed" from="Tweens/TweenIn" to="." method="_on_TweenIn_tween_completed"]
+[connection signal="tween_completed" from="Tweens/TweenOut" to="." method="_on_TweenOut_tween_completed"]
+
+[editable path="Dices/CurrentDice"]
+[editable path="Dices/CurrentDice/EmotionSlots/EmotionSlot"]
