@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://2DOutlineButton.gd" type="Script" id=2]
+[ext_resource path="res://UI/dice_theme.tres" type="Theme" id=1]
+[ext_resource path="res://UI/CustomOutlineButton.gd" type="Script" id=2]
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id=18]
 code = "shader_type canvas_item;
 
 uniform bool active = false;
@@ -73,21 +74,32 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 1 )
+shader = SubResource( 18 )
 shader_param/active = false
 shader_param/color = Color( 1, 1, 1, 1 )
-shader_param/width = 1.0
+shader_param/width = 2.0
 shader_param/pattern = 0
 shader_param/inside = false
 shader_param/add_margins = true
 
-[node name="2DOutlineButton" type="Area2D"]
+[node name="CustomOutlineButton" type="Area2D"]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="TopicSlot" type="Position2D" parent="."]
+
+[node name="Label" type="Label" parent="."]
+margin_left = -20.0
+margin_top = -8.0
+margin_right = 20.0
+margin_bottom = 6.0
+theme = ExtResource( 1 )
+text = "Thing"
+align = 1
 
 [connection signal="input_event" from="." to="." method="_on_2DOutlineButton_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_Button_mouse_entered"]

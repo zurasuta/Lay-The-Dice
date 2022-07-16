@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Player/ObjectiveManager.gd" type="Script" id=1]
+[ext_resource path="res://Player/ObjectiveStats.tscn" type="PackedScene" id=2]
+
+[node name="ObjectiveManager" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="EasyStats" parent="." instance=ExtResource( 2 )]
+EXTRA_CHARACTER_MIN_AMOUNT = 3
+EXTRA_CHARACTER_MAX_AMOUNT = 8
+MIN_HEARTS = 1
+MAX_HEARTS = 4
+MAX_FRIENDS = 2
+MAX_WRONGS = 0
+
+[node name="MediumStats" parent="." instance=ExtResource( 2 )]
+EXTRA_CHARACTER_MIN_AMOUNT = 2
+EXTRA_CHARACTER_MAX_AMOUNT = 6
+MIN_FRIENDS = 1
+MIN_WRONGS = 1
+
+[node name="HardStats" parent="." instance=ExtResource( 2 )]
+EXTRA_CHARACTER_MIN_AMOUNT = 0
+EXTRA_CHARACTER_MAX_AMOUNT = 3
+MIN_FRIENDS = 1
+MIN_WRONGS = 2
+MAX_HEARTS = 4
+MAX_FRIENDS = 2
+MAX_WRONGS = 6
+
+[node name="ObjectivesGroup" type="Node2D" parent="."]

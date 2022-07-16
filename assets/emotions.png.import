@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Wizard.png-f149a4f82010f5ce8868a41f5f2fd168.stex"
+path="res://.import/emotions.png-463c1ed7b2baa4c9b6c6636c43ffd686.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Wizard.png"
-dest_files=[ "res://.import/Wizard.png-f149a4f82010f5ce8868a41f5f2fd168.stex" ]
+source_file="res://assets/emotions.png"
+dest_files=[ "res://.import/emotions.png-463c1ed7b2baa4c9b6c6636c43ffd686.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/square-small.png-1a6173b1e7c6deb0b8801bfd19d282f3.stex"
+path="res://.import/topic-cube.png-cff3506aa7b9d6ffe475417b60ef15c9.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://square-small.png"
-dest_files=[ "res://.import/square-small.png-1a6173b1e7c6deb0b8801bfd19d282f3.stex" ]
+source_file="res://DiceCharacters/topic-cube.png"
+dest_files=[ "res://.import/topic-cube.png-cff3506aa7b9d6ffe475417b60ef15c9.stex" ]
 
 [params]
 

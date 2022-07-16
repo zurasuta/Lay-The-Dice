@@ -1,7 +1,7 @@
 extends Node2D
 
 
-var DiceCharacter = preload("res://DiceCharacter.tscn")
+var DiceCharacter = preload("res://DiceCharacters/DiceCharacter.tscn")
 
 onready var start_position = $KeyPositions/StartPosition
 onready var center_position = $KeyPositions/CenterPosition
@@ -66,3 +66,17 @@ func _on_TweenOut_tween_completed(object, key):
 func get_timer_current_time():
 	return timer.time_left
 	
+
+
+func _on_Talk_button_pressed( button_type ):
+	print("talk button pressed")
+
+func _on_Flirt_button_pressed( button_type ):
+	print("flirt button pressed")
+
+func _on_Happy_button_pressed( button_type ):
+	print("smiley button pressed")
+
+func _on_Sad_button_pressed( button_type):
+	print("sadface button pressed")
+

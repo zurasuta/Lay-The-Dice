@@ -1,25 +1,85 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
-[ext_resource path="res://DiceCharacter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://DiceCharacters/DiceCharacter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World.gd" type="Script" id=2]
 [ext_resource path="res://assets/background_p1.png" type="Texture" id=3]
 [ext_resource path="res://assets/goal_p.png" type="Texture" id=4]
 [ext_resource path="res://assets/table_p.png" type="Texture" id=5]
-[ext_resource path="res://outline.shader" type="Shader" id=7]
-[ext_resource path="res://dice_theme.tres" type="Theme" id=8]
-[ext_resource path="res://2DOutlineButton.tscn" type="PackedScene" id=12]
+[ext_resource path="res://UI/dice_theme.tres" type="Theme" id=8]
+[ext_resource path="res://UI/CustomOutlineButton.tscn" type="PackedScene" id=12]
 
-[sub_resource type="ShaderMaterial" id=15]
-shader = ExtResource( 7 )
-shader_param/active = false
-shader_param/color = Color( 1, 1, 1, 1 )
-shader_param/width = 1.0
-shader_param/pattern = 0
-shader_param/inside = false
-shader_param/add_margins = true
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
 
-[sub_resource type="ShaderMaterial" id=5]
-shader = ExtResource( 7 )
+uniform bool active = false;
+uniform vec4 color : hint_color = vec4(1.0);
+uniform float width : hint_range(0, 10) = 1.0;
+uniform int pattern : hint_range(0, 2) = 0; // diamond, circle, square
+uniform bool inside = false;
+uniform bool add_margins = true; // only useful when inside is false
+
+void vertex() {
+	if (add_margins) {
+		VERTEX += (UV * 2.0 - 1.0) * width;
+	}
+}
+
+bool hasContraryNeighbour(vec2 uv, vec2 texture_pixel_size, sampler2D texture) {
+	for (float i = -ceil(width); i <= ceil(width); i++) {
+		float x = abs(i) > width ? width * sign(i) : i;
+		float offset;
+		
+		if (pattern == 0) {
+			offset = width - abs(x);
+		} else if (pattern == 1) {
+			offset = floor(sqrt(pow(width + 0.5, 2) - x * x));
+		} else if (pattern == 2) {
+			offset = width;
+		}
+		
+		for (float j = -ceil(offset); j <= ceil(offset); j++) {
+			float y = abs(j) > offset ? offset * sign(j) : j;
+			vec2 xy = uv + texture_pixel_size * vec2(x, y);
+			
+			if ((xy != clamp(xy, vec2(0.0), vec2(1.0)) || texture(texture, xy).a == 0.0) == inside) {
+				return true;
+			}
+		}
+	}
+	
+	return false;
+}
+
+void fragment() {
+	vec4 previous_color = texture(TEXTURE, UV);
+	vec2 uv = UV;
+	
+	if (active == true){
+		if (add_margins) {
+			vec2 texture_pixel_size = vec2(1.0) / (vec2(1.0) / TEXTURE_PIXEL_SIZE + vec2(width * 2.0));
+			
+			uv = (uv - texture_pixel_size * width) * TEXTURE_PIXEL_SIZE / texture_pixel_size;
+			
+			if (uv != clamp(uv, vec2(0.0), vec2(1.0))) {
+				COLOR.a = 0.0;
+			} else {
+				COLOR = texture(TEXTURE, uv);
+			}
+		} else {
+			COLOR = texture(TEXTURE, uv);
+		}
+		
+		if ((COLOR.a > 0.0) == inside && hasContraryNeighbour(uv, TEXTURE_PIXEL_SIZE, TEXTURE)) {
+			COLOR.rgb = inside ? mix(COLOR.rgb, color.rgb, color.a) : color.rgb;
+			COLOR.a += (1.0 - COLOR.a) * color.a;
+		}
+	} else {
+		COLOR = previous_color
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 1 )
 shader_param/active = false
 shader_param/color = Color( 1, 1, 1, 1 )
 shader_param/width = 2.0
@@ -27,29 +87,14 @@ shader_param/pattern = 0
 shader_param/inside = false
 shader_param/add_margins = true
 
-[sub_resource type="StreamTexture" id=6]
+[sub_resource type="StreamTexture" id=7]
 load_path = "res://.import/button_blue.png-2801a60dceef966ec8249ede425d1895.stex"
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 52, 29.5 )
-
-[sub_resource type="ShaderMaterial" id=7]
-shader = ExtResource( 7 )
-shader_param/active = false
-shader_param/color = Color( 1, 1, 1, 1 )
-shader_param/width = 2.0
-shader_param/pattern = 0
-shader_param/inside = false
-shader_param/add_margins = true
-
-[sub_resource type="StreamTexture" id=8]
-load_path = "res://.import/button_red.png-dc55f27b733a4ac30da4b05fd98ed676.stex"
-
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 51.5, 30.5 )
 
 [sub_resource type="ShaderMaterial" id=9]
-shader = ExtResource( 7 )
+shader = SubResource( 1 )
 shader_param/active = false
 shader_param/color = Color( 1, 1, 1, 1 )
 shader_param/width = 2.0
@@ -58,13 +103,13 @@ shader_param/inside = false
 shader_param/add_margins = true
 
 [sub_resource type="StreamTexture" id=10]
-load_path = "res://.import/button_yellow.png-dc4491b4a3fafc59ea6ff6549a1aff4f.stex"
+load_path = "res://.import/button_red.png-dc55f27b733a4ac30da4b05fd98ed676.stex"
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 88.5, 30 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 51.5, 30 )
 
 [sub_resource type="ShaderMaterial" id=11]
-shader = ExtResource( 7 )
+shader = SubResource( 1 )
 shader_param/active = false
 shader_param/color = Color( 1, 1, 1, 1 )
 shader_param/width = 2.0
@@ -73,13 +118,83 @@ shader_param/inside = false
 shader_param/add_margins = true
 
 [sub_resource type="StreamTexture" id=12]
-load_path = "res://.import/button_happy.png-8619c24eef93b564e495b9429f11c623.stex"
+load_path = "res://.import/button_yellow.png-dc4491b4a3fafc59ea6ff6549a1aff4f.stex"
 
-[sub_resource type="CircleShape2D" id=4]
-radius = 16.5
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 87.5, 29.5 )
 
-[sub_resource type="ShaderMaterial" id=13]
-shader = ExtResource( 7 )
+[sub_resource type="Shader" id=18]
+code = "shader_type canvas_item;
+
+uniform bool active = false;
+uniform vec4 color : hint_color = vec4(1.0);
+uniform float width : hint_range(0, 10) = 1.0;
+uniform int pattern : hint_range(0, 2) = 0; // diamond, circle, square
+uniform bool inside = false;
+uniform bool add_margins = true; // only useful when inside is false
+
+void vertex() {
+	if (add_margins) {
+		VERTEX += (UV * 2.0 - 1.0) * width;
+	}
+}
+
+bool hasContraryNeighbour(vec2 uv, vec2 texture_pixel_size, sampler2D texture) {
+	for (float i = -ceil(width); i <= ceil(width); i++) {
+		float x = abs(i) > width ? width * sign(i) : i;
+		float offset;
+		
+		if (pattern == 0) {
+			offset = width - abs(x);
+		} else if (pattern == 1) {
+			offset = floor(sqrt(pow(width + 0.5, 2) - x * x));
+		} else if (pattern == 2) {
+			offset = width;
+		}
+		
+		for (float j = -ceil(offset); j <= ceil(offset); j++) {
+			float y = abs(j) > offset ? offset * sign(j) : j;
+			vec2 xy = uv + texture_pixel_size * vec2(x, y);
+			
+			if ((xy != clamp(xy, vec2(0.0), vec2(1.0)) || texture(texture, xy).a == 0.0) == inside) {
+				return true;
+			}
+		}
+	}
+	
+	return false;
+}
+
+void fragment() {
+	vec4 previous_color = texture(TEXTURE, UV);
+	vec2 uv = UV;
+	
+	if (active == true){
+		if (add_margins) {
+			vec2 texture_pixel_size = vec2(1.0) / (vec2(1.0) / TEXTURE_PIXEL_SIZE + vec2(width * 2.0));
+			
+			uv = (uv - texture_pixel_size * width) * TEXTURE_PIXEL_SIZE / texture_pixel_size;
+			
+			if (uv != clamp(uv, vec2(0.0), vec2(1.0))) {
+				COLOR.a = 0.0;
+			} else {
+				COLOR = texture(TEXTURE, uv);
+			}
+		} else {
+			COLOR = texture(TEXTURE, uv);
+		}
+		
+		if ((COLOR.a > 0.0) == inside && hasContraryNeighbour(uv, TEXTURE_PIXEL_SIZE, TEXTURE)) {
+			COLOR.rgb = inside ? mix(COLOR.rgb, color.rgb, color.a) : color.rgb;
+			COLOR.a += (1.0 - COLOR.a) * color.a;
+		}
+	} else {
+		COLOR = previous_color
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id=19]
+shader = SubResource( 18 )
 shader_param/active = false
 shader_param/color = Color( 1, 1, 1, 1 )
 shader_param/width = 2.0
@@ -87,8 +202,26 @@ shader_param/pattern = 0
 shader_param/inside = false
 shader_param/add_margins = true
 
-[sub_resource type="StreamTexture" id=14]
+[sub_resource type="StreamTexture" id=20]
+load_path = "res://.import/button_happy.png-8619c24eef93b564e495b9429f11c623.stex"
+
+[sub_resource type="CircleShape2D" id=21]
+radius = 16.0
+
+[sub_resource type="ShaderMaterial" id=16]
+shader = SubResource( 1 )
+shader_param/active = false
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/width = 2.0
+shader_param/pattern = 0
+shader_param/inside = false
+shader_param/add_margins = true
+
+[sub_resource type="StreamTexture" id=17]
 load_path = "res://.import/button_sad.png-e38edd54d4f6c3a570418af1c305937b.stex"
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 16.5076
 
 [node name="World" type="Node2D"]
 script = ExtResource( 2 )
@@ -106,6 +239,10 @@ one_shot = true
 autostart = true
 
 [node name="KeyPositions" type="Node2D" parent="."]
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
 
 [node name="StartPosition" type="Position2D" parent="KeyPositions"]
 position = Vector2( 840, 218 )
@@ -124,68 +261,87 @@ __meta__ = {
 [node name="CurrentDice" parent="Dices" instance=ExtResource( 1 )]
 position = Vector2( 840, 220 )
 
-[node name="Table" type="Sprite" parent="."]
+[node name="Buttons" type="Sprite" parent="."]
 position = Vector2( 319, 180 )
 texture = ExtResource( 5 )
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Talk" parent="Table" instance=ExtResource( 12 )]
-material = SubResource( 15 )
-position = Vector2( -143, 136 )
+[node name="TalkButton" parent="Buttons" instance=ExtResource( 12 )]
+position = Vector2( -177, 131 )
 
-[node name="Sprite" parent="Table/Talk" index="0"]
-material = SubResource( 5 )
-texture = SubResource( 6 )
+[node name="Sprite" parent="Buttons/TalkButton" index="0"]
+material = SubResource( 6 )
+texture = SubResource( 7 )
 
-[node name="CollisionShape2D" parent="Table/Talk" index="1"]
-position = Vector2( 2, -0.5 )
-shape = SubResource( 1 )
+[node name="CollisionShape2D" parent="Buttons/TalkButton" index="1"]
+position = Vector2( 1.5, 0.5 )
+shape = SubResource( 8 )
 
-[node name="Flirt" parent="Table" instance=ExtResource( 12 )]
-position = Vector2( -30, 136 )
+[node name="TopicSlot" parent="Buttons/TalkButton" index="2"]
+visible = false
 
-[node name="Sprite" parent="Table/Flirt" index="0"]
-material = SubResource( 7 )
-texture = SubResource( 8 )
+[node name="FlirtButton" parent="Buttons" instance=ExtResource( 12 )]
+position = Vector2( -65, 131 )
+button_type = 1
 
-[node name="CollisionShape2D" parent="Table/Flirt" index="1"]
-position = Vector2( -0.5, -0.5 )
-shape = SubResource( 2 )
-
-[node name="Mention" parent="Table" instance=ExtResource( 12 )]
-position = Vector2( 117, 134 )
-
-[node name="Sprite" parent="Table/Mention" index="0"]
+[node name="Sprite" parent="Buttons/FlirtButton" index="0"]
 material = SubResource( 9 )
 texture = SubResource( 10 )
 
-[node name="CollisionShape2D" parent="Table/Mention" index="1"]
-position = Vector2( 1.5, 1 )
-shape = SubResource( 3 )
+[node name="CollisionShape2D" parent="Buttons/FlirtButton" index="1"]
+position = Vector2( 0.5, 1 )
+shape = SubResource( 2 )
 
-[node name="Happy" parent="Table" instance=ExtResource( 12 )]
-position = Vector2( 241, 132 )
+[node name="TopicSlot" parent="Buttons/FlirtButton" index="2"]
+visible = false
 
-[node name="Sprite" parent="Table/Happy" index="0"]
+[node name="MentionButton" parent="Buttons" instance=ExtResource( 12 )]
+position = Vector2( 82, 130 )
+button_type = 2
+
+[node name="Sprite" parent="Buttons/MentionButton" index="0"]
 material = SubResource( 11 )
 texture = SubResource( 12 )
 
-[node name="CollisionShape2D" parent="Table/Happy" index="1"]
-position = Vector2( 0, 1 )
-shape = SubResource( 4 )
+[node name="CollisionShape2D" parent="Buttons/MentionButton" index="1"]
+position = Vector2( 0.5, 0.5 )
+shape = SubResource( 3 )
 
-[node name="Sad" parent="Table" instance=ExtResource( 12 )]
-position = Vector2( 279, 152 )
+[node name="TopicSlot" parent="Buttons/MentionButton" index="2"]
+position = Vector2( 59, -4 )
 
-[node name="Sprite" parent="Table/Sad" index="0"]
-material = SubResource( 13 )
-texture = SubResource( 14 )
+[node name="SmileyButton" parent="Buttons" instance=ExtResource( 12 )]
+position = Vector2( 213, 138 )
+button_type = 3
 
-[node name="CollisionShape2D" parent="Table/Sad" index="1"]
-position = Vector2( 0, 1 )
-shape = SubResource( 4 )
+[node name="Sprite" parent="Buttons/SmileyButton" index="0"]
+material = SubResource( 19 )
+texture = SubResource( 20 )
+
+[node name="CollisionShape2D" parent="Buttons/SmileyButton" index="1"]
+shape = SubResource( 21 )
+
+[node name="Label" parent="Buttons/SmileyButton" index="3"]
+visible = false
+
+[node name="SadFaceButton" parent="Buttons" instance=ExtResource( 12 )]
+position = Vector2( 258, 152 )
+button_type = 4
+
+[node name="Sprite" parent="Buttons/SadFaceButton" index="0"]
+material = SubResource( 16 )
+texture = SubResource( 17 )
+
+[node name="CollisionShape2D" parent="Buttons/SadFaceButton" index="1"]
+shape = SubResource( 5 )
+
+[node name="TopicSlot" parent="Buttons/SadFaceButton" index="2"]
+visible = false
+
+[node name="Label" parent="Buttons/SadFaceButton" index="3"]
+visible = false
 
 [node name="Goal" type="Sprite" parent="."]
 texture = ExtResource( 4 )
@@ -221,8 +377,8 @@ autowrap = true
 [connection signal="tween_completed" from="Tweens/TweenIn" to="." method="_on_TweenIn_tween_completed"]
 [connection signal="tween_completed" from="Tweens/TweenOut" to="." method="_on_TweenOut_tween_completed"]
 
-[editable path="Table/Talk"]
-[editable path="Table/Flirt"]
-[editable path="Table/Mention"]
-[editable path="Table/Happy"]
-[editable path="Table/Sad"]
+[editable path="Buttons/TalkButton"]
+[editable path="Buttons/FlirtButton"]
+[editable path="Buttons/MentionButton"]
+[editable path="Buttons/SmileyButton"]
+[editable path="Buttons/SadFaceButton"]

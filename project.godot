@@ -9,13 +9,25 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node2D",
-"class": "EmotionSlot",
+"base": "Area2D",
+"class": "CustomOutlineButton",
 "language": "GDScript",
-"path": "res://EmotionSlot.gd"
+"path": "res://UI/CustomOutlineButton.gd"
+}, {
+"base": "Node",
+"class": "Objective",
+"language": "GDScript",
+"path": "res://Player/Objective.gd"
+}, {
+"base": "Node",
+"class": "ObjectiveStats",
+"language": "GDScript",
+"path": "res://Player/ObjectiveStats.gd"
 } ]
 _global_script_class_icons={
-"EmotionSlot": ""
+"CustomOutlineButton": "",
+"Objective": "",
+"ObjectiveStats": ""
 }
 
 [application]
@@ -23,6 +35,10 @@ _global_script_class_icons={
 config/name="Lay the Dice"
 run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+PlayerInfo="*res://Player/PlayerInfo.gd"
 
 [display]
 
