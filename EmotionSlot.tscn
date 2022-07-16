@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://EmotionSlot.gd" type="Script" id=1]
 [ext_resource path="res://assets/slot_p.png" type="Texture" id=2]
+[ext_resource path="res://assets/emotions-spritesheet.png" type="Texture" id=3]
 
 [node name="EmotionSlot" type="Node2D"]
 script = ExtResource( 1 )
@@ -10,3 +11,5 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 
 [node name="EmotionSprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+hframes = 4

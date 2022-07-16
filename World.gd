@@ -7,6 +7,8 @@ onready var start_position = $KeyPositions/StartPosition
 onready var center_position = $KeyPositions/CenterPosition
 onready var end_position = $KeyPositions/EndPosition
 onready var dices = $Dices
+onready var timer = $Timer
+onready var time_label = $Node/Control/TimeLabel
 
 onready var tween_in = $Tweens/TweenIn
 onready var tween_out = $Tweens/TweenOut
@@ -15,11 +17,22 @@ onready var tween_out = $Tweens/TweenOut
 onready var current_character = $Dices/CurrentDice
 onready var next_character = null
 
+
 func instantiate_new_dice():
 	var new_dice = DiceCharacter.instance()
 	dices.add_child(new_dice)
 	new_dice.global_position = start_position.global_position
 	return new_dice
+
+
+
+func _process(delta):
+	if timer != null:
+		time_label.text = str(int(get_timer_current_time()))
+	
+	if Input.is_action_just_pressed("ui_accept"):
+		current_character.perform_change()
+		current_character.update_slots()
 
 
 func _on_Timer_timeout():
@@ -29,10 +42,12 @@ func _on_Timer_timeout():
 	
 func _ready():
 	center_current_dice()
+	
 
 func center_current_dice():
 	tween_in.interpolate_property(current_character, "global_position", start_position.global_position, center_position.global_position, 0.5, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 	tween_in.start()
+	timer.start()
 	
 	
 func _on_TweenIn_tween_completed(object, key):
@@ -47,9 +62,7 @@ func move_away_current_dice():
 func _on_TweenOut_tween_completed(object, key):
 	current_character = next_character
 	center_current_dice()
+
+func get_timer_current_time():
+	return timer.time_left
 	
-	
-func _process(delta):
-	if Input.is_action_just_pressed("ui_accept"):
-		print("boop")
-		center_current_dice()

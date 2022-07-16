@@ -1,11 +1,94 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://DiceCharacter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World.gd" type="Script" id=2]
 [ext_resource path="res://assets/background_p1.png" type="Texture" id=3]
 [ext_resource path="res://assets/goal_p.png" type="Texture" id=4]
 [ext_resource path="res://assets/table_p.png" type="Texture" id=5]
-[ext_resource path="res://assets/emotion-heart.png" type="Texture" id=6]
+[ext_resource path="res://outline.shader" type="Shader" id=7]
+[ext_resource path="res://dice_theme.tres" type="Theme" id=8]
+[ext_resource path="res://2DOutlineButton.tscn" type="PackedScene" id=12]
+
+[sub_resource type="ShaderMaterial" id=15]
+shader = ExtResource( 7 )
+shader_param/active = false
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/width = 1.0
+shader_param/pattern = 0
+shader_param/inside = false
+shader_param/add_margins = true
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 7 )
+shader_param/active = false
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/width = 2.0
+shader_param/pattern = 0
+shader_param/inside = false
+shader_param/add_margins = true
+
+[sub_resource type="StreamTexture" id=6]
+load_path = "res://.import/button_blue.png-2801a60dceef966ec8249ede425d1895.stex"
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 52, 29.5 )
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = ExtResource( 7 )
+shader_param/active = false
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/width = 2.0
+shader_param/pattern = 0
+shader_param/inside = false
+shader_param/add_margins = true
+
+[sub_resource type="StreamTexture" id=8]
+load_path = "res://.import/button_red.png-dc55f27b733a4ac30da4b05fd98ed676.stex"
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 51.5, 30.5 )
+
+[sub_resource type="ShaderMaterial" id=9]
+shader = ExtResource( 7 )
+shader_param/active = false
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/width = 2.0
+shader_param/pattern = 0
+shader_param/inside = false
+shader_param/add_margins = true
+
+[sub_resource type="StreamTexture" id=10]
+load_path = "res://.import/button_yellow.png-dc4491b4a3fafc59ea6ff6549a1aff4f.stex"
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 88.5, 30 )
+
+[sub_resource type="ShaderMaterial" id=11]
+shader = ExtResource( 7 )
+shader_param/active = false
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/width = 2.0
+shader_param/pattern = 0
+shader_param/inside = false
+shader_param/add_margins = true
+
+[sub_resource type="StreamTexture" id=12]
+load_path = "res://.import/button_happy.png-8619c24eef93b564e495b9429f11c623.stex"
+
+[sub_resource type="CircleShape2D" id=4]
+radius = 16.5
+
+[sub_resource type="ShaderMaterial" id=13]
+shader = ExtResource( 7 )
+shader_param/active = false
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/width = 2.0
+shader_param/pattern = 0
+shader_param/inside = false
+shader_param/add_margins = true
+
+[sub_resource type="StreamTexture" id=14]
+load_path = "res://.import/button_sad.png-e38edd54d4f6c3a570418af1c305937b.stex"
 
 [node name="World" type="Node2D"]
 script = ExtResource( 2 )
@@ -13,9 +96,13 @@ script = ExtResource( 2 )
 [node name="Background" type="Sprite" parent="."]
 texture = ExtResource( 3 )
 centered = false
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 10.0
+one_shot = true
 autostart = true
 
 [node name="KeyPositions" type="Node2D" parent="."]
@@ -32,21 +119,77 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Table" type="Sprite" parent="."]
-position = Vector2( 319, 180 )
-texture = ExtResource( 5 )
-
-[node name="Goal" type="Sprite" parent="."]
-texture = ExtResource( 4 )
-centered = false
-
 [node name="Dices" type="Node2D" parent="."]
 
 [node name="CurrentDice" parent="Dices" instance=ExtResource( 1 )]
 position = Vector2( 840, 220 )
 
-[node name="EmotionSprite" parent="Dices/CurrentDice/EmotionSlots/EmotionSlot" index="1"]
-texture = ExtResource( 6 )
+[node name="Table" type="Sprite" parent="."]
+position = Vector2( 319, 180 )
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Talk" parent="Table" instance=ExtResource( 12 )]
+material = SubResource( 15 )
+position = Vector2( -143, 136 )
+
+[node name="Sprite" parent="Table/Talk" index="0"]
+material = SubResource( 5 )
+texture = SubResource( 6 )
+
+[node name="CollisionShape2D" parent="Table/Talk" index="1"]
+position = Vector2( 2, -0.5 )
+shape = SubResource( 1 )
+
+[node name="Flirt" parent="Table" instance=ExtResource( 12 )]
+position = Vector2( -30, 136 )
+
+[node name="Sprite" parent="Table/Flirt" index="0"]
+material = SubResource( 7 )
+texture = SubResource( 8 )
+
+[node name="CollisionShape2D" parent="Table/Flirt" index="1"]
+position = Vector2( -0.5, -0.5 )
+shape = SubResource( 2 )
+
+[node name="Mention" parent="Table" instance=ExtResource( 12 )]
+position = Vector2( 117, 134 )
+
+[node name="Sprite" parent="Table/Mention" index="0"]
+material = SubResource( 9 )
+texture = SubResource( 10 )
+
+[node name="CollisionShape2D" parent="Table/Mention" index="1"]
+position = Vector2( 1.5, 1 )
+shape = SubResource( 3 )
+
+[node name="Happy" parent="Table" instance=ExtResource( 12 )]
+position = Vector2( 241, 132 )
+
+[node name="Sprite" parent="Table/Happy" index="0"]
+material = SubResource( 11 )
+texture = SubResource( 12 )
+
+[node name="CollisionShape2D" parent="Table/Happy" index="1"]
+position = Vector2( 0, 1 )
+shape = SubResource( 4 )
+
+[node name="Sad" parent="Table" instance=ExtResource( 12 )]
+position = Vector2( 279, 152 )
+
+[node name="Sprite" parent="Table/Sad" index="0"]
+material = SubResource( 13 )
+texture = SubResource( 14 )
+
+[node name="CollisionShape2D" parent="Table/Sad" index="1"]
+position = Vector2( 0, 1 )
+shape = SubResource( 4 )
+
+[node name="Goal" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+centered = false
 
 [node name="Tweens" type="Node" parent="."]
 
@@ -54,9 +197,32 @@ texture = ExtResource( 6 )
 
 [node name="TweenOut" type="Tween" parent="Tweens"]
 
+[node name="Node" type="Node" parent="."]
+
+[node name="Control" type="Control" parent="Node"]
+anchor_right = 1.0
+
+[node name="TimeLabel" type="Label" parent="Node/Control"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -21.0
+margin_top = -1.0
+margin_right = 19.0
+margin_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource( 8 )
+text = "30"
+align = 1
+valign = 1
+autowrap = true
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="tween_completed" from="Tweens/TweenIn" to="." method="_on_TweenIn_tween_completed"]
 [connection signal="tween_completed" from="Tweens/TweenOut" to="." method="_on_TweenOut_tween_completed"]
 
-[editable path="Dices/CurrentDice"]
-[editable path="Dices/CurrentDice/EmotionSlots/EmotionSlot"]
+[editable path="Table/Talk"]
+[editable path="Table/Flirt"]
+[editable path="Table/Mention"]
+[editable path="Table/Happy"]
+[editable path="Table/Sad"]
