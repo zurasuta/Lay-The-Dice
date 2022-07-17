@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Mr._Monopoly_Man.ogg-e4d30674e29e85c1c2980ad650a78065.oggstr"
+
+[deps]
+
+source_file="res://Music/Mr._Monopoly_Man.ogg"
+dest_files=[ "res://.import/Mr._Monopoly_Man.ogg-e4d30674e29e85c1c2980ad650a78065.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

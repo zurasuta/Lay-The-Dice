@@ -35,10 +35,6 @@ func _ready():
 func _process(_delta):
 	if timer != null:
 		time_label.text = str(int(get_timer_current_time()))
-	
-	if Input.is_action_just_pressed("ui_accept"):
-		current_character.perform_change()
-		current_character.update_slots()
 		
 func pop_message():
 	animation_player.play("PopPlayerMessage")

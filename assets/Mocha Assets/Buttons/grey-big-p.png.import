@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/button_blue.png-2801a60dceef966ec8249ede425d1895.stex"
+path="res://.import/grey-big-p.png-c48c9a92d2c1f8f70efd6959386f1343.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/button_blue.png"
-dest_files=[ "res://.import/button_blue.png-2801a60dceef966ec8249ede425d1895.stex" ]
+source_file="res://assets/Mocha Assets/Buttons/grey-big-p.png"
+dest_files=[ "res://.import/grey-big-p.png-c48c9a92d2c1f8f70efd6959386f1343.stex" ]
 
 [params]
 

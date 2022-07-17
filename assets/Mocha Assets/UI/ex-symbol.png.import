@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/slot_p.png-07e78e982ecdfe5dc8f6184d1fed1ba7.stex"
+path="res://.import/ex-symbol.png-a0277c2a2b2bd24a03584cde8c634fb6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/slot_p.png"
-dest_files=[ "res://.import/slot_p.png-07e78e982ecdfe5dc8f6184d1fed1ba7.stex" ]
+source_file="res://assets/Mocha Assets/UI/ex-symbol.png"
+dest_files=[ "res://.import/ex-symbol.png-a0277c2a2b2bd24a03584cde8c634fb6.stex" ]
 
 [params]
 

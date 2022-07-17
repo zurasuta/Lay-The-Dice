@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/Mocha Assets/UI/Paper.PNG" type="Texture" id=1]
 [ext_resource path="res://assets/Mocha Assets/Icons.PNG" type="Texture" id=2]
-[ext_resource path="res://assets/Mocha Assets/UI/Paper Stuffs.PNG" type="Texture" id=3]
+[ext_resource path="res://UI/GoalCount.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Player/Goal.gd" type="Script" id=4]
 [ext_resource path="res://Sound Effects/Positive.ogg" type="AudioStream" id=5]
 
@@ -185,10 +185,6 @@ anims/RESET = SubResource( 2 )
 anims/SmileyAnimation = SubResource( 3 )
 anims/WrongAnimation = SubResource( 4 )
 
-[node name="PaperStuffs" type="Sprite" parent="."]
-position = Vector2( 160, 877 )
-texture = ExtResource( 3 )
-
 [node name="HeartSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 volume_db = -10.0
@@ -202,3 +198,7 @@ pitch_scale = 0.85
 stream = ExtResource( 5 )
 volume_db = -10.0
 pitch_scale = 0.58
+
+[node name="GoalCount" parent="." instance=ExtResource( 3 )]
+position = Vector2( 133, 890 )
+rotation = -0.352557

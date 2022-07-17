@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/With_the_Flip_of_a_Coin....ogg-6895097d9fd930393e5f1ecbc6a5859a.oggstr"
+
+[deps]
+
+source_file="res://Music/With_the_Flip_of_a_Coin....ogg"
+dest_files=[ "res://.import/With_the_Flip_of_a_Coin....ogg-6895097d9fd930393e5f1ecbc6a5859a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

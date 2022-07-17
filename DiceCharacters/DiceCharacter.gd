@@ -6,7 +6,7 @@ signal emotions_matched
 
 enum Emotions { Empty, Heart, Friendly, Wrong }
 
-enum { Idle, Angry, Sad, Happy, Love, Change }
+enum { Idle, Angry, Happy, Love, Change }
 
 export (String) var character_name = "DefaultName"
 export (Color) var character_color
@@ -86,21 +86,13 @@ func update_animation_state():
 			animation_player.play("Idle")
 			push_emotion(Emotions.Empty)
 
-
-
 		Angry:
 			animation_player.play("Angry")
 			push_emotion(Emotions.Wrong)
 
-
-
-		Sad:
-			pass
 		Happy:
 			animation_player.play("Happy")
 			push_emotion(Emotions.Friendly)
-
-
 
 		Love:
 			animation_player.play("Love")
@@ -111,6 +103,7 @@ func update_animation_state():
 	
 		
 func perform_change():
+	update_slots()
 	animation_player.play("Change")
 
 func change_to_random_state():

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Hunk_Dice_Summer.ogg-09431f42f53f1a0f0757ae42bc272db9.oggstr"
+
+[deps]
+
+source_file="res://Music/Hunk_Dice_Summer.ogg"
+dest_files=[ "res://.import/Hunk_Dice_Summer.ogg-09431f42f53f1a0f0757ae42bc272db9.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/emotions.png-463c1ed7b2baa4c9b6c6636c43ffd686.stex"
+path="res://.import/grey-big.png-a55db6b1b8e2d37add6445765fc7948f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/emotions.png"
-dest_files=[ "res://.import/emotions.png-463c1ed7b2baa4c9b6c6636c43ffd686.stex" ]
+source_file="res://assets/Mocha Assets/Buttons/grey-big.png"
+dest_files=[ "res://.import/grey-big.png-a55db6b1b8e2d37add6445765fc7948f.stex" ]
 
 [params]
 
