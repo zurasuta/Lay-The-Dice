@@ -1,5 +1,7 @@
 extends Node
 
+class_name ObjectiveManager
+
 enum Diff { Easy, Medium, Hard }
 
 onready var rng = RandomNumberGenerator.new()
@@ -11,6 +13,8 @@ onready var hard_stats = $HardStats
 onready var objectives_group = $ObjectivesGroup
 
 onready var stats : ObjectiveStats = null
+
+signal objective_created(difficulty, objective)
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_right"):
@@ -26,7 +30,7 @@ func spawn_new_objective_group():
 
 
 func create_new_objective( difficulty ) :
-	var char_count = 0
+	var char_count = 1
 	match difficulty:
 		Diff.Easy:
 			stats = easy_stats
@@ -49,5 +53,5 @@ func create_new_objective( difficulty ) :
 	new_objective.amount_of_characters = char_count + rng.randi_range(stats.EXTRA_CHARACTER_MIN_AMOUNT, stats.EXTRA_CHARACTER_MAX_AMOUNT)
 	
 	objectives_group.add_child(new_objective)
-	#print(new_objective)
+	emit_signal("objective_created", difficulty, new_objective)
 	

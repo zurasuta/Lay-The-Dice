@@ -49,11 +49,6 @@ func increase_player_stat( emotion ):
 			PlayerInfo.current_friend_matches += 1
 		Emotions.Wrong:
 			PlayerInfo.current_wrong_matches += 1
-
-func reset_player_stats():
-	PlayerInfo.current_heart_matches = 0
-	PlayerInfo.current_friend_matches = 0
-	PlayerInfo.current_wrong_matches = 0
 		
 func animate_slots():
 	for s in slots.get_children():

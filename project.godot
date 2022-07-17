@@ -14,10 +14,30 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://UI/CustomOutlineButton.gd"
 }, {
+"base": "Area2D",
+"class": "ObjectifButton",
+"language": "GDScript",
+"path": "res://ObjectifButton.gd"
+}, {
 "base": "Node",
 "class": "Objective",
 "language": "GDScript",
 "path": "res://Objectives/Objective.gd"
+}, {
+"base": "Node2D",
+"class": "ObjectiveDisplay",
+"language": "GDScript",
+"path": "res://UI/ObjectiveDisplay.gd"
+}, {
+"base": "Node",
+"class": "ObjectiveManager",
+"language": "GDScript",
+"path": "res://Objectives/ObjectiveManager.gd"
+}, {
+"base": "Resource",
+"class": "ObjectiveResource",
+"language": "GDScript",
+"path": "res://Objectives/ObjectiveResource.gd"
 }, {
 "base": "Node",
 "class": "ObjectiveStats",
@@ -26,14 +46,18 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "CustomOutlineButton": "",
+"ObjectifButton": "",
 "Objective": "",
+"ObjectiveDisplay": "",
+"ObjectiveManager": "",
+"ObjectiveResource": "",
 "ObjectiveStats": ""
 }
 
 [application]
 
 config/name="Lay the Dice"
-run/main_scene="res://World.tscn"
+run/main_scene="res://MainMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]

@@ -8,6 +8,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "HeartAnimation"
+step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("EmotionEarned:frame")
 tracks/0/interp = 1
@@ -200,5 +201,13 @@ volume_db = -10.0
 pitch_scale = 0.58
 
 [node name="GoalCount" parent="." instance=ExtResource( 3 )]
-position = Vector2( 133, 890 )
+position = Vector2( 126, 866 )
 rotation = -0.352557
+
+[node name="FirstGoal" parent="GoalCount" index="0"]
+position = Vector2( 10.1111, -30.377 )
+
+[node name="SecondGoal" parent="GoalCount" index="1"]
+position = Vector2( 14.8299, 32.0947 )
+
+[editable path="GoalCount"]

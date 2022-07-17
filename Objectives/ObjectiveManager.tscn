@@ -21,7 +21,6 @@ MIN_FRIENDS = 1
 MIN_WRONGS = 1
 
 [node name="HardStats" parent="." instance=ExtResource( 2 )]
-EXTRA_CHARACTER_MIN_AMOUNT = 0
 EXTRA_CHARACTER_MAX_AMOUNT = 3
 MIN_FRIENDS = 1
 MIN_WRONGS = 2
