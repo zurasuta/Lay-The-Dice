@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/pling_pling_2.wav-08caf719dba2089f8a35624e9a5c3453.sample"
+
+[deps]
+
+source_file="res://Sound Effects/mocha sounds/pling_pling_2.wav"
+dest_files=[ "res://.import/pling_pling_2.wav-08caf719dba2089f8a35624e9a5c3453.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

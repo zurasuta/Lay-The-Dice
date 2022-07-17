@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/yipee.wav-4fd431de971dbb11aab270e2f9df2317.sample"
+
+[deps]
+
+source_file="res://Sound Effects/mocha sounds/yipee.wav"
+dest_files=[ "res://.import/yipee.wav-4fd431de971dbb11aab270e2f9df2317.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

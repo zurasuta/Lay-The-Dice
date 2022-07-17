@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/D10_negative_3.wav-3c7d4d7aea1ae807b36a41af6b0c3152.sample"
+
+[deps]
+
+source_file="res://Sound Effects/d10 sounds/D10_negative_3.wav"
+dest_files=[ "res://.import/D10_negative_3.wav-3c7d4d7aea1ae807b36a41af6b0c3152.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

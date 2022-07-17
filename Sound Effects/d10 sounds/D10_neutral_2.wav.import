@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/D10_neutral_2.wav-7e8d43f774b48a79c0d76787a527cef7.sample"
+
+[deps]
+
+source_file="res://Sound Effects/d10 sounds/D10_neutral_2.wav"
+dest_files=[ "res://.import/D10_neutral_2.wav-7e8d43f774b48a79c0d76787a527cef7.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

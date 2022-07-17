@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/Passing_Mouse_Over_Buttons_1.wav-b2bf78c3c4ddce596876f66d217a0d9f.sample"
+path="res://.import/Passing_Mouse_Over_Buttons_1.wav-489d4dfe078edf880ac8f216d8b3d5cf.sample"
 
 [deps]
 
-source_file="res://Sound Effects/Passing_Mouse_Over_Buttons_1.wav"
-dest_files=[ "res://.import/Passing_Mouse_Over_Buttons_1.wav-b2bf78c3c4ddce596876f66d217a0d9f.sample" ]
+source_file="res://Sound Effects/Button Sounds/Passing_Mouse_Over_Buttons_1.wav"
+dest_files=[ "res://.import/Passing_Mouse_Over_Buttons_1.wav-489d4dfe078edf880ac8f216d8b3d5cf.sample" ]
 
 [params]
 

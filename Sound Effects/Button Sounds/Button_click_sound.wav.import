@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/Button_click_sound.wav-b282239cba992142ef1cd1cba601fb57.sample"
+path="res://.import/Button_click_sound.wav-abbb09eacbf958408fc1a739c23a4a1a.sample"
 
 [deps]
 
-source_file="res://Sound Effects/Button_click_sound.wav"
-dest_files=[ "res://.import/Button_click_sound.wav-b282239cba992142ef1cd1cba601fb57.sample" ]
+source_file="res://Sound Effects/Button Sounds/Button_click_sound.wav"
+dest_files=[ "res://.import/Button_click_sound.wav-abbb09eacbf958408fc1a739c23a4a1a.sample" ]
 
 [params]
 
