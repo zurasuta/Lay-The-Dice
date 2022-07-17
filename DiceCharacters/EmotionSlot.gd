@@ -17,4 +17,6 @@ func play_blink():
 	animation.play("Blink")
 	
 func stop_blink():
+	animation.stop()
+	active_shader = false
 	animation.play("Idle")

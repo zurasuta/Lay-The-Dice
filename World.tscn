@@ -3,9 +3,14 @@
 [ext_resource path="res://DiceCharacters/DiceCharacter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World.gd" type="Script" id=2]
 [ext_resource path="res://assets/background_p1.png" type="Texture" id=3]
-[ext_resource path="res://assets/goal_p.png" type="Texture" id=4]
-[ext_resource path="res://assets/table_p.png" type="Texture" id=5]
+[ext_resource path="res://Player/Goal.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/Mocha Assets/UI/Table.PNG" type="Texture" id=5]
+[ext_resource path="res://assets/Mocha Assets/Buttons/Orange.PNG" type="Texture" id=6]
+[ext_resource path="res://assets/Mocha Assets/Buttons/Yoo.PNG" type="Texture" id=7]
 [ext_resource path="res://UI/dice_theme.tres" type="Theme" id=8]
+[ext_resource path="res://assets/Mocha Assets/Buttons/Blue.PNG" type="Texture" id=9]
+[ext_resource path="res://assets/Mocha Assets/Buttons/Yippee.PNG" type="Texture" id=10]
+[ext_resource path="res://assets/Mocha Assets/Buttons/Pink.PNG" type="Texture" id=11]
 [ext_resource path="res://UI/CustomOutlineButton.tscn" type="PackedScene" id=12]
 
 [sub_resource type="Shader" id=1]
@@ -82,46 +87,37 @@ void fragment() {
 shader = SubResource( 1 )
 shader_param/active = false
 shader_param/color = Color( 1, 1, 1, 1 )
-shader_param/width = 2.0
+shader_param/width = 10.0
 shader_param/pattern = 0
 shader_param/inside = false
 shader_param/add_margins = true
 
-[sub_resource type="StreamTexture" id=7]
-load_path = "res://.import/button_blue.png-2801a60dceef966ec8249ede425d1895.stex"
-
 [sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 51.5, 30.5 )
+extents = Vector2( 152, 75.5 )
 
 [sub_resource type="ShaderMaterial" id=9]
 shader = SubResource( 1 )
 shader_param/active = false
 shader_param/color = Color( 1, 1, 1, 1 )
-shader_param/width = 2.0
+shader_param/width = 10.0
 shader_param/pattern = 0
 shader_param/inside = false
 shader_param/add_margins = true
 
-[sub_resource type="StreamTexture" id=10]
-load_path = "res://.import/button_red.png-dc55f27b733a4ac30da4b05fd98ed676.stex"
-
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 51.5, 30 )
+extents = Vector2( 148, 75.5 )
 
 [sub_resource type="ShaderMaterial" id=11]
 shader = SubResource( 1 )
 shader_param/active = false
 shader_param/color = Color( 1, 1, 1, 1 )
-shader_param/width = 2.0
+shader_param/width = 10.0
 shader_param/pattern = 0
 shader_param/inside = false
 shader_param/add_margins = true
 
-[sub_resource type="StreamTexture" id=12]
-load_path = "res://.import/button_yellow.png-dc4491b4a3fafc59ea6ff6549a1aff4f.stex"
-
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 87.5, 29.5 )
+extents = Vector2( 257, 78 )
 
 [sub_resource type="Shader" id=18]
 code = "shader_type canvas_item;
@@ -197,36 +193,31 @@ void fragment() {
 shader = SubResource( 18 )
 shader_param/active = false
 shader_param/color = Color( 1, 1, 1, 1 )
-shader_param/width = 2.0
+shader_param/width = 10.0
 shader_param/pattern = 0
 shader_param/inside = false
 shader_param/add_margins = true
 
-[sub_resource type="StreamTexture" id=20]
-load_path = "res://.import/button_happy.png-8619c24eef93b564e495b9429f11c623.stex"
-
-[sub_resource type="CircleShape2D" id=21]
-radius = 16.0
+[sub_resource type="RectangleShape2D" id=20]
+extents = Vector2( 41, 31.5 )
 
 [sub_resource type="ShaderMaterial" id=16]
 shader = SubResource( 1 )
 shader_param/active = false
 shader_param/color = Color( 1, 1, 1, 1 )
-shader_param/width = 2.0
+shader_param/width = 10.0
 shader_param/pattern = 0
 shader_param/inside = false
 shader_param/add_margins = true
 
-[sub_resource type="StreamTexture" id=17]
-load_path = "res://.import/button_sad.png-e38edd54d4f6c3a570418af1c305937b.stex"
-
-[sub_resource type="CircleShape2D" id=5]
-radius = 16.5076
+[sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 38.5, 29 )
 
 [node name="World" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="Background" type="Sprite" parent="."]
+scale = Vector2( 2.8, 2.8 )
 texture = ExtResource( 3 )
 centered = false
 __meta__ = {
@@ -234,7 +225,7 @@ __meta__ = {
 }
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 10.0
+wait_time = 10.5
 one_shot = true
 autostart = true
 
@@ -245,13 +236,13 @@ __meta__ = {
 }
 
 [node name="StartPosition" type="Position2D" parent="KeyPositions"]
-position = Vector2( 840, 218 )
+position = Vector2( 2352, 610.4 )
 
 [node name="CenterPosition" type="Position2D" parent="KeyPositions"]
-position = Vector2( 320, 185 )
+position = Vector2( 896, 518 )
 
 [node name="EndPosition" type="Position2D" parent="KeyPositions"]
-position = Vector2( -230, 218 )
+position = Vector2( -644, 610.4 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -259,83 +250,86 @@ __meta__ = {
 [node name="Dices" type="Node2D" parent="."]
 
 [node name="CurrentDice" parent="Dices" instance=ExtResource( 1 )]
-position = Vector2( 840, 220 )
+position = Vector2( 904, 521 )
 
 [node name="Buttons" type="Sprite" parent="."]
-position = Vector2( 319, 180 )
+position = Vector2( 883, 902 )
 texture = ExtResource( 5 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="TalkButton" parent="Buttons" instance=ExtResource( 12 )]
-position = Vector2( -177, 131 )
+position = Vector2( -418, 6 )
 
 [node name="Sprite" parent="Buttons/TalkButton" index="0"]
 material = SubResource( 6 )
-texture = SubResource( 7 )
+texture = ExtResource( 9 )
 
 [node name="CollisionShape2D" parent="Buttons/TalkButton" index="1"]
-position = Vector2( 1.5, 0.5 )
+position = Vector2( -1, -1.5 )
 shape = SubResource( 8 )
 
 [node name="TopicSlot" parent="Buttons/TalkButton" index="2"]
 visible = false
 
 [node name="FlirtButton" parent="Buttons" instance=ExtResource( 12 )]
-position = Vector2( -65, 131 )
+position = Vector2( -83, 7 )
 button_type = 1
 
 [node name="Sprite" parent="Buttons/FlirtButton" index="0"]
 material = SubResource( 9 )
-texture = SubResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="CollisionShape2D" parent="Buttons/FlirtButton" index="1"]
-position = Vector2( 0.5, 1 )
+position = Vector2( 2, 0.5 )
 shape = SubResource( 2 )
 
 [node name="TopicSlot" parent="Buttons/FlirtButton" index="2"]
 visible = false
 
 [node name="MentionButton" parent="Buttons" instance=ExtResource( 12 )]
-position = Vector2( 82, 130 )
+position = Vector2( 360, 6 )
 button_type = 2
 
 [node name="Sprite" parent="Buttons/MentionButton" index="0"]
 material = SubResource( 11 )
-texture = SubResource( 12 )
+texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" parent="Buttons/MentionButton" index="1"]
-position = Vector2( 0.5, 0.5 )
+position = Vector2( 1, 0 )
 shape = SubResource( 3 )
 
 [node name="TopicSlot" parent="Buttons/MentionButton" index="2"]
 position = Vector2( 59, -4 )
 
+[node name="Label" parent="Buttons/MentionButton" index="3"]
+margin_left = -207.0
+margin_right = -14.0
+
 [node name="SmileyButton" parent="Buttons" instance=ExtResource( 12 )]
-position = Vector2( 213, 138 )
+position = Vector2( 703, -36 )
 button_type = 3
 
 [node name="Sprite" parent="Buttons/SmileyButton" index="0"]
 material = SubResource( 19 )
-texture = SubResource( 20 )
+texture = ExtResource( 10 )
 
 [node name="CollisionShape2D" parent="Buttons/SmileyButton" index="1"]
-shape = SubResource( 21 )
+position = Vector2( 1, -0.5 )
+shape = SubResource( 20 )
 
 [node name="Label" parent="Buttons/SmileyButton" index="3"]
 visible = false
 
 [node name="SadFaceButton" parent="Buttons" instance=ExtResource( 12 )]
-position = Vector2( 258, 152 )
+position = Vector2( 828, 37 )
 button_type = 4
 
 [node name="Sprite" parent="Buttons/SadFaceButton" index="0"]
 material = SubResource( 16 )
-texture = SubResource( 17 )
+texture = ExtResource( 7 )
 
 [node name="CollisionShape2D" parent="Buttons/SadFaceButton" index="1"]
-shape = SubResource( 5 )
+position = Vector2( 0.5, 1 )
+shape = SubResource( 21 )
 
 [node name="TopicSlot" parent="Buttons/SadFaceButton" index="2"]
 visible = false
@@ -343,9 +337,7 @@ visible = false
 [node name="Label" parent="Buttons/SadFaceButton" index="3"]
 visible = false
 
-[node name="Goal" type="Sprite" parent="."]
-texture = ExtResource( 4 )
-centered = false
+[node name="Goal" parent="." instance=ExtResource( 4 )]
 
 [node name="Tweens" type="Node" parent="."]
 
@@ -361,10 +353,9 @@ anchor_right = 1.0
 [node name="TimeLabel" type="Label" parent="Node/Control"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -21.0
-margin_top = -1.0
-margin_right = 19.0
-margin_bottom = 32.0
+margin_left = -40.5
+margin_right = 40.5
+margin_bottom = 69.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource( 8 )

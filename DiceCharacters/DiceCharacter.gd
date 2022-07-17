@@ -10,6 +10,7 @@ enum { Idle, Angry, Sad, Happy, Love, Change }
 
 export (String) var character_name = "DefaultName"
 export (Color) var character_color
+export (AudioStream) var song
 
 onready var emotions_array = [ Emotions.Empty, Emotions.Empty, Emotions.Empty ]
 onready var slots = $EmotionSlotGroup
@@ -35,9 +36,33 @@ func push_emotion( emotion ):
 	pop_first_emotion()
 	var m = check_for_match()
 	if m:
+		print("match for ", Emotions.keys()[emotions_array[0]])
+		animate_slots()
 		emit_signal("emotions_matched", emotions_array[0])
+		
 
+func update_player_stat( emotion ):
+	match emotion:
+		Emotions.Heart:
+			pass
+		Emotions.Friendly:
+			pass
+		Emotions.Wrong:
+			pass
 
+func reset_player_stats():
+	PlayerInfo.current_heart_matches = 0
+	PlayerInfo.current_friend_matches = 0
+	PlayerInfo.current_wrong_matches = 0
+		
+func animate_slots():
+	for s in slots.get_children():
+		s.play_blink()
+
+func rest_slots():
+	for s in slots.get_children():
+		s.stop_blink()
+			
 func pop_first_emotion():
 	emotions_array.pop_front()
 			
@@ -49,8 +74,10 @@ func update_slots():
 	
 
 func check_for_match():
-	
-	return emotions_array[0] == emotions_array[1] and emotions_array[0] == emotions_array[2]
+	if emotions_array[0] != Emotions.Empty:
+		return emotions_array[0] == emotions_array[1] and emotions_array[0] == emotions_array[2]
+	else:
+		return false
 	
 func update_animation_state():
 	match state:

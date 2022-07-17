@@ -8,10 +8,10 @@ position = Vector2( -1, -132 )
 script = ExtResource( 2 )
 
 [node name="EmotionSlot" parent="." instance=ExtResource( 1 )]
-position = Vector2( -40, 11 )
+position = Vector2( -128, 44 )
 
 [node name="EmotionSlot2" parent="." instance=ExtResource( 1 )]
 position = Vector2( 1, -3 )
 
 [node name="EmotionSlot3" parent="." instance=ExtResource( 1 )]
-position = Vector2( 38, 9 )
+position = Vector2( 132, 37 )

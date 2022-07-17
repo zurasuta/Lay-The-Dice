@@ -28,7 +28,7 @@ func _on_Button_mouse_exited():
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 
 
-func _on_2DOutlineButton_input_event(viewport, event, shape_idx):
+func _on_2DOutlineButton_input_event(_viewport, event, _shape_idx):
 	if event.is_action_pressed("mouse_click"):
 		if button_type == ButtonType.Mention:
 			emit_signal("mention_pressed", topic)
