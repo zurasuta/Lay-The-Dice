@@ -41,14 +41,14 @@ func push_emotion( emotion ):
 		emit_signal("emotions_matched", emotions_array[0])
 		
 
-func update_player_stat( emotion ):
+func increase_player_stat( emotion ):
 	match emotion:
 		Emotions.Heart:
-			pass
+			PlayerInfo.current_heart_matches += 1
 		Emotions.Friendly:
-			pass
+			PlayerInfo.current_friend_matches += 1
 		Emotions.Wrong:
-			pass
+			PlayerInfo.current_wrong_matches += 1
 
 func reset_player_stats():
 	PlayerInfo.current_heart_matches = 0
@@ -74,8 +74,9 @@ func update_slots():
 	
 
 func check_for_match():
-	if emotions_array[0] != Emotions.Empty:
-		return emotions_array[0] == emotions_array[1] and emotions_array[0] == emotions_array[2]
+	if emotions_array[0] != Emotions.Empty and (emotions_array[0] == emotions_array[1] and emotions_array[0] == emotions_array[2]):
+		increase_player_stat(emotions_array[0])
+		return true
 	else:
 		return false
 	
@@ -117,9 +118,9 @@ func change_to_random_state():
 	var r = rng.randi_range(1, 4)
 	match r:
 		1:
-			self.state = Love
+			self.state = Idle
 		2:
-			self.state = Love
+			self.state = Angry
 		3:
 			self.state = Happy
 		4:

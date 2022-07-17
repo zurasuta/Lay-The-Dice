@@ -229,6 +229,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector2( 1357, 667 ), Vector2( 1357, 1218 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:dialogue_on")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=23]
 resource_name = "PopPlayerMessage"
@@ -297,15 +309,15 @@ __meta__ = {
 [node name="BubbleStartPosition" type="Position2D" parent="KeyPositions"]
 position = Vector2( 1357, 1062 )
 
-[node name="Chatboxes" type="Node2D" parent="."]
-
-[node name="PlayerChatBox" parent="Chatboxes" instance=ExtResource( 13 )]
-position = Vector2( 1357, 1062 )
-
 [node name="Dices" type="Node2D" parent="."]
 
 [node name="CurrentDice" parent="Dices" instance=ExtResource( 1 )]
 position = Vector2( 904, 521 )
+
+[node name="Chatboxes" type="Node2D" parent="."]
+
+[node name="PlayerChatBox" parent="Chatboxes" instance=ExtResource( 13 )]
+position = Vector2( 1357, 667 )
 
 [node name="Buttons" type="Sprite" parent="."]
 position = Vector2( 883, 902 )
@@ -429,6 +441,7 @@ anims/RemainHidden = SubResource( 25 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="button_pressed" from="Buttons/TalkButton" to="." method="_on_TalkButton_button_pressed"]
 [connection signal="button_pressed" from="Buttons/FlirtButton" to="." method="_on_FlirtButton_button_pressed"]
+[connection signal="mention_pressed" from="Buttons/MentionButton" to="." method="_on_MentionButton_mention_pressed"]
 [connection signal="button_pressed" from="Buttons/SmileyButton" to="." method="_on_SmileyButton_button_pressed"]
 [connection signal="button_pressed" from="Buttons/SadFaceButton" to="." method="_on_SadFaceButton_button_pressed"]
 [connection signal="tween_completed" from="Tweens/TweenIn" to="." method="_on_TweenIn_tween_completed"]
