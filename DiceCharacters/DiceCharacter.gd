@@ -13,6 +13,8 @@ export (String) var character_name = "DefaultName"
 export (Color) var character_color
 export (AudioStream) var song
 
+export (bool) var scripted = false
+
 onready var emotions_array = [ Emotions.Empty, Emotions.Empty, Emotions.Empty ]
 onready var slots = $EmotionSlotGroup
 onready var slot1 = $EmotionSlotGroup/EmotionSlot
@@ -36,6 +38,11 @@ func set_state(value):
  
 func _ready():
 	update_slots()
+	#if scripted == false:
+		#randomize_personality()
+		
+func randomize_personality():
+	personality.randomize_myself()
 
 func push_emotion( emotion ):
 	emotions_array.push_back(emotion)

@@ -1,13 +1,13 @@
 [gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://assets/Mocha Assets/Characters/spritesheet_body1.png" type="Texture" id=1]
+[ext_resource path="res://assets/Mocha Assets/Characters/booba.PNG" type="Texture" id=1]
 [ext_resource path="res://DiceCharacters/EmotionSlotGroup.tscn" type="PackedScene" id=2]
 [ext_resource path="res://DiceCharacters/DiceCharacter.gd" type="Script" id=3]
 [ext_resource path="res://DiceCharacters/Personality.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Sound Effects/Dice_Roll.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/Mocha Assets/Characters/d6.PNG" type="Texture" id=6]
 [ext_resource path="res://assets/Mocha Assets/Characters/speen.PNG" type="Texture" id=7]
-[ext_resource path="res://Music/Mr._Monopoly_Man.ogg" type="AudioStream" id=8]
+[ext_resource path="res://Music/Lay_the_Dice.ogg" type="AudioStream" id=8]
 [ext_resource path="res://Sound Effects/mocha sounds/turu_turu_turu.wav" type="AudioStream" id=9]
 [ext_resource path="res://Sound Effects/mocha sounds/noot_noot.wav" type="AudioStream" id=10]
 [ext_resource path="res://Sound Effects/mocha sounds/aww.wav" type="AudioStream" id=11]
@@ -133,7 +133,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0, 0.05, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 6 ) ]
+"values": [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 6 ) ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -323,14 +323,17 @@ script = ExtResource( 3 )
 [node name="IndifferentState" parent="Personality/StateSet" index="0"]
 sounds = [ ExtResource( 12 ), ExtResource( 9 ) ]
 
+[node name="TalkMarkov" parent="Personality/StateSet/IndifferentState" index="0"]
+friend_chance = 50
+wrong_chance = 0
+
 [node name="FlirtMarkov" parent="Personality/StateSet/IndifferentState" index="1"]
-indifference_chance = 30
-wrong_chance = 50
+wrong_chance = 75
 
 [node name="SmileyMarkov" parent="Personality/StateSet/IndifferentState" index="2"]
-indifference_chance = 20
-love_chance = 60
-friend_chance = 20
+indifference_chance = 10
+love_chance = 30
+friend_chance = 80
 wrong_chance = 0
 
 [node name="SadFaceMarkov" parent="Personality/StateSet/IndifferentState" index="3"]
@@ -339,11 +342,33 @@ love_chance = 10
 [node name="LoveState" parent="Personality/StateSet" index="1"]
 sounds = [ ExtResource( 10 ), ExtResource( 11 ) ]
 
+[node name="FlirtMarkov" parent="Personality/StateSet/LoveState" index="1"]
+indifference_chance = 0
+friend_chance = 20
+
+[node name="SmileyMarkov" parent="Personality/StateSet/LoveState" index="2"]
+love_chance = 75
+
 [node name="FriendlyState" parent="Personality/StateSet" index="2"]
 sounds = [ ExtResource( 15 ), ExtResource( 14 ) ]
 
+[node name="TalkMarkov" parent="Personality/StateSet/FriendlyState" index="0"]
+love_chance = 30
+wrong_chance = 50
+
+[node name="FlirtMarkov" parent="Personality/StateSet/FriendlyState" index="1"]
+wrong_chance = 20
+
 [node name="WrongState" parent="Personality/StateSet" index="3"]
 sounds = [ ExtResource( 10 ), ExtResource( 13 ) ]
+
+[node name="TalkMarkov" parent="Personality/StateSet/WrongState" index="0"]
+love_chance = 10
+
+[node name="FlirtMarkov" parent="Personality/StateSet/WrongState" index="1"]
+indifference_chance = 0
+love_chance = 10
+wrong_chance = 50
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

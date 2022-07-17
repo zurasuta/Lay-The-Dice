@@ -3,7 +3,7 @@ extends Node
 onready var objective_resource = preload("res://Objectives/ObjectiveResource.gd")
 
 onready var button_sound = preload("res://Sound Effects/Button Sounds/Button_click_sound.wav")
-onready var mainmenu_music = preload("res://Music/Dicey_Dicey_Panic_Club.ogg")
+onready var mainmenu_music = preload("res://Music/Lay_the_Dice.ogg")
 
 onready var audio_stream = AudioStreamPlayer.new()
 onready var mainmenu_stream = AudioStreamPlayer.new()

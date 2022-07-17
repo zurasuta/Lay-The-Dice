@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://DiceCharacters/DiceCharacter.tscn" type="PackedScene" id=1]
+
+[node name="D20" instance=ExtResource( 1 )]
+
+[editable path="Personality"]
+[editable path="Personality/StateSet/IndifferentState"]
+[editable path="Personality/StateSet/LoveState"]
+[editable path="Personality/StateSet/FriendlyState"]
+[editable path="Personality/StateSet/WrongState"]

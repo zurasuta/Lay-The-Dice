@@ -586,7 +586,7 @@ position = Vector2( 883, 902 )
 texture = ExtResource( 5 )
 
 [node name="TalkButton" parent="Buttons" instance=ExtResource( 12 )]
-position = Vector2( -418, 6 )
+position = Vector2( -256, 0 )
 
 [node name="Sprite" parent="Buttons/TalkButton" index="1"]
 material = SubResource( 6 )
@@ -601,7 +601,7 @@ shape = SubResource( 8 )
 visible = false
 
 [node name="FlirtButton" parent="Buttons" instance=ExtResource( 12 )]
-position = Vector2( -83, 7 )
+position = Vector2( 69, 3 )
 button_type = 1
 
 [node name="Sprite" parent="Buttons/FlirtButton" index="1"]
@@ -616,6 +616,7 @@ shape = SubResource( 2 )
 visible = false
 
 [node name="MentionButton" parent="Buttons" instance=ExtResource( 12 )]
+visible = false
 position = Vector2( 360, 6 )
 button_type = 2
 
@@ -638,7 +639,7 @@ margin_right = -14.0
 visible = false
 
 [node name="SmileyButton" parent="Buttons" instance=ExtResource( 12 )]
-position = Vector2( 703, -36 )
+position = Vector2( 315, -36 )
 button_type = 3
 
 [node name="Sprite" parent="Buttons/SmileyButton" index="1"]
@@ -656,7 +657,7 @@ visible = false
 visible = false
 
 [node name="SadFaceButton" parent="Buttons" instance=ExtResource( 12 )]
-position = Vector2( 828, 37 )
+position = Vector2( 465, 23 )
 button_type = 4
 
 [node name="Sprite" parent="Buttons/SadFaceButton" index="1"]

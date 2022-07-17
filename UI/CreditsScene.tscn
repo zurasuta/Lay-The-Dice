@@ -100,14 +100,40 @@ centered = false
 [node name="CreditsBox" parent="." instance=ExtResource( 2 )]
 position = Vector2( 663, 371 )
 
+[node name="TitleLabel" parent="CreditsBox" index="0"]
+text = "Art"
+
+[node name="ContentLabel" parent="CreditsBox" index="1"]
+text = "Anonymocha"
+
 [node name="CreditsBox2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1148, 377 )
+
+[node name="TitleLabel" parent="CreditsBox2" index="0"]
+text = "Music & SFX"
+
+[node name="ContentLabel" parent="CreditsBox2" index="1"]
+text = "Raydee99
+Jack Petty"
 
 [node name="CreditsBox3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 333, 652 )
 
+[node name="TitleLabel" parent="CreditsBox3" index="0"]
+text = "Writing"
+
+[node name="ContentLabel" parent="CreditsBox3" index="1"]
+text = "Spotleaf
+Jack Petty"
+
 [node name="CreditsBox4" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1481, 654 )
+
+[node name="TitleLabel" parent="CreditsBox4" index="0"]
+text = "Code"
+
+[node name="ContentLabel" parent="CreditsBox4" index="1"]
+text = "Mo Zurasuta"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Start"
@@ -127,4 +153,8 @@ position = Vector2( 3843, 546 )
 scale = Vector2( 1.72167, 1.80949 )
 texture = ExtResource( 5 )
 
+[editable path="CreditsBox"]
+[editable path="CreditsBox2"]
+[editable path="CreditsBox3"]
+[editable path="CreditsBox4"]
 [editable path="BackButton"]

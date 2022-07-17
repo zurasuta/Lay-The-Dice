@@ -1,5 +1,7 @@
 extends Node
 
+class_name MarkovNode
+
 export (int, 0, 100) var indifference_chance
 export (int, 0, 100) var love_chance
 export (int, 0, 100) var friend_chance
