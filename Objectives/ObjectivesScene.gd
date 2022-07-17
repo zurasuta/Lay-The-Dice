@@ -34,6 +34,7 @@ func update_button( b, obj ):
 
 
 func change_to_play_scene():
+	PlayerInfo.mainmenu_stream.stop()
 	get_tree().change_scene("res://World.tscn")
 
 func _on_BackButton_back_pressed():
@@ -61,23 +62,24 @@ func update_player_info(obj):
 	PlayerInfo.friend_obj = obj.friends_match_target
 	PlayerInfo.wrong_obj = obj.wrong_match_target
 	PlayerInfo.amount = obj.amount_of_characters
+	PlayerInfo.difficulty = obj.difficulty
 	
 
 func _on_ObjectifButton_objectif_pressed(obj):
 	update_player_info(obj)
 	animation_p.play("TransitionToPlay")
-	print("pressed button 1")
+
 
 
 func _on_ObjectifButton2_objectif_pressed(obj):
 	update_player_info(obj)
 	
 	animation_p.play("TransitionToPlay")
-	print("pressed button 2")
+
 
 
 func _on_ObjectifButton3_objectif_pressed(obj):
 	update_player_info(obj)
 	animation_p.play("TransitionToPlay")
-	print("pressed button 3")
+
 	

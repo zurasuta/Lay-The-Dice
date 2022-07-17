@@ -8,7 +8,7 @@ script = ExtResource( 1 )
 
 [node name="EasyStats" parent="." instance=ExtResource( 2 )]
 EXTRA_CHARACTER_MIN_AMOUNT = 3
-EXTRA_CHARACTER_MAX_AMOUNT = 8
+EXTRA_CHARACTER_MAX_AMOUNT = 10
 MIN_HEARTS = 1
 MAX_HEARTS = 4
 MAX_FRIENDS = 2
@@ -21,11 +21,11 @@ MIN_FRIENDS = 1
 MIN_WRONGS = 1
 
 [node name="HardStats" parent="." instance=ExtResource( 2 )]
-EXTRA_CHARACTER_MAX_AMOUNT = 3
+EXTRA_CHARACTER_MAX_AMOUNT = 2
 MIN_FRIENDS = 1
 MIN_WRONGS = 2
-MAX_HEARTS = 4
-MAX_FRIENDS = 2
+MAX_HEARTS = 6
+MAX_FRIENDS = 4
 MAX_WRONGS = 6
 
 [node name="ObjectivesGroup" type="Node2D" parent="."]

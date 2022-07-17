@@ -539,7 +539,6 @@ texture = ExtResource( 3 )
 centered = false
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 10.5
 one_shot = true
 autostart = true
 
@@ -691,6 +690,7 @@ visible = false
 anchor_right = 1.0
 
 [node name="TimeLabel" type="Label" parent="Time/Control"]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -40.5

@@ -31,6 +31,8 @@ func spawn_new_objective_group():
 
 func create_new_objective( difficulty ) :
 	var char_count = 1
+	var new_objective = ObjectiveScene.instance()
+	
 	match difficulty:
 		Diff.Easy:
 			stats = easy_stats
@@ -39,7 +41,8 @@ func create_new_objective( difficulty ) :
 		Diff.Hard:
 			stats = hard_stats
 	
-	var new_objective = ObjectiveScene.instance()
+	new_objective.difficulty = difficulty
+	
 	rng.randomize()
 	new_objective.difficulty = Diff.keys()[difficulty]
 	new_objective.hearts_match_target = rng.randi_range(stats.MIN_HEARTS, stats.MAX_HEARTS)

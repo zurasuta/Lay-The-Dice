@@ -54,6 +54,7 @@ func _physics_process(_delta):
 		
 	
 	if Input.is_action_just_released("mouse_click") && mouse_on:
+		PlayerInfo.audio_stream.play()
 		choose_signal_to_emit()
 		label.rect_position.y -= displacement_amount
 		button_pressed.visible = false

@@ -388,6 +388,9 @@ text = "back"
 
 [node name="ObjectiveManager" parent="." instance=ExtResource( 2 )]
 
+[node name="EasyStats" parent="ObjectiveManager" index="0"]
+EXTRA_CHARACTER_MIN_AMOUNT = 4
+
 [node name="ObjectifButtons" type="Node2D" parent="."]
 position = Vector2( 901, 542 )
 
@@ -439,6 +442,7 @@ anims/TransitionToPlay = SubResource( 33 )
 [connection signal="objectif_pressed" from="ObjectifButtons/ObjectifButton3" to="." method="_on_ObjectifButton3_objectif_pressed"]
 
 [editable path="BackButton"]
+[editable path="ObjectiveManager"]
 [editable path="ObjectifButtons/ObjectifButton"]
 [editable path="ObjectifButtons/ObjectifButton2"]
 [editable path="ObjectifButtons/ObjectifButton3"]

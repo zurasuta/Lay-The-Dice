@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://UI/dice_theme.tres" type="Theme" id=1]
 [ext_resource path="res://UI/CustomOutlineButton.gd" type="Script" id=2]
 [ext_resource path="res://assets/monogram-extended.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://assets/Mocha Assets/Icons.PNG" type="Texture" id=4]
 [ext_resource path="res://UI/CustomFont.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Sound Effects/Button Sounds/Button_click_sound.wav" type="AudioStream" id=6]
+[ext_resource path="res://Sound Effects/Button Sounds/Passing_Mouse_Over_Buttons_1.wav" type="AudioStream" id=7]
 
 [sub_resource type="Shader" id=18]
 code = "shader_type canvas_item;
@@ -151,6 +153,14 @@ theme = ExtResource( 1 )
 custom_fonts/font = ExtResource( 5 )
 text = "50%"
 align = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -20.0
+
+[node name="OverAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -10.0
 
 [connection signal="input_event" from="." to="." method="_on_2DOutlineButton_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_Button_mouse_entered"]

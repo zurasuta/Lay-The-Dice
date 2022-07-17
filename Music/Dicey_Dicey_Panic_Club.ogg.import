@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Dicey_Dicey_Panic_Club.ogg-663bfbffc56c3b111090d84bfa46d33d.oggstr"
+
+[deps]
+
+source_file="res://Music/Dicey_Dicey_Panic_Club.ogg"
+dest_files=[ "res://.import/Dicey_Dicey_Panic_Club.ogg-663bfbffc56c3b111090d84bfa46d33d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

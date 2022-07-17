@@ -43,4 +43,3 @@ func relocate_slots_by(amount):
 	for s in get_children():
 		if s is EmotionSlot:
 			s.global_position.x -= amount
-			print(s.global_position)
