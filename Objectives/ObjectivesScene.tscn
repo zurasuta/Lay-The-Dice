@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Objectives/ObjectivesUI.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Objectives/ObjectiveManager.tscn" type="PackedScene" id=2]
+
+[node name="ObjectivesScene" type="Node2D"]
+
+[node name="ObjectiveManager" parent="." instance=ExtResource( 2 )]
+
+[node name="ObjectivesUI" parent="." instance=ExtResource( 1 )]

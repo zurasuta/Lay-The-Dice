@@ -115,12 +115,11 @@ func perform_change():
 func change_to_random_state():
 	rng.randomize()
 	var r = rng.randi_range(1, 4)
-	print(r)
 	match r:
 		1:
-			self.state = Idle
+			self.state = Love
 		2:
-			self.state = Angry
+			self.state = Love
 		3:
 			self.state = Happy
 		4:

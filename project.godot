@@ -17,12 +17,12 @@ _global_script_classes=[ {
 "base": "Node",
 "class": "Objective",
 "language": "GDScript",
-"path": "res://Player/Objective.gd"
+"path": "res://Objectives/Objective.gd"
 }, {
 "base": "Node",
 "class": "ObjectiveStats",
 "language": "GDScript",
-"path": "res://Player/ObjectiveStats.gd"
+"path": "res://Objectives/ObjectiveStats.gd"
 } ]
 _global_script_class_icons={
 "CustomOutlineButton": "",

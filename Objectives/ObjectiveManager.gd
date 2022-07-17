@@ -3,7 +3,7 @@ extends Node
 enum Diff { Easy, Medium, Hard }
 
 onready var rng = RandomNumberGenerator.new()
-onready var ObjectiveScene = preload("res://Player/Objective.tscn")
+onready var ObjectiveScene = preload("res://Objectives/Objective.tscn")
 
 onready var easy_stats = $EasyStats
 onready var medium_stat = $MediumStats
@@ -49,5 +49,5 @@ func create_new_objective( difficulty ) :
 	new_objective.amount_of_characters = char_count + rng.randi_range(stats.EXTRA_CHARACTER_MIN_AMOUNT, stats.EXTRA_CHARACTER_MAX_AMOUNT)
 	
 	objectives_group.add_child(new_objective)
-	print(new_objective)
+	#print(new_objective)
 	

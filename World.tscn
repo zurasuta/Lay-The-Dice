@@ -1,8 +1,8 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://DiceCharacters/DiceCharacter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://World.gd" type="Script" id=2]
-[ext_resource path="res://assets/background_p1.png" type="Texture" id=3]
+[ext_resource path="res://assets/Mocha Assets/UI/Stripes.png" type="Texture" id=3]
 [ext_resource path="res://Player/Goal.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/Mocha Assets/UI/Table.PNG" type="Texture" id=5]
 [ext_resource path="res://assets/Mocha Assets/Buttons/Orange.PNG" type="Texture" id=6]
@@ -12,6 +12,7 @@
 [ext_resource path="res://assets/Mocha Assets/Buttons/Yippee.PNG" type="Texture" id=10]
 [ext_resource path="res://assets/Mocha Assets/Buttons/Pink.PNG" type="Texture" id=11]
 [ext_resource path="res://UI/CustomOutlineButton.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Player/PlayerChatBox.tscn" type="PackedScene" id=13]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -199,7 +200,7 @@ shader_param/inside = false
 shader_param/add_margins = true
 
 [sub_resource type="RectangleShape2D" id=20]
-extents = Vector2( 41, 31.5 )
+extents = Vector2( 54, 44 )
 
 [sub_resource type="ShaderMaterial" id=16]
 shader = SubResource( 1 )
@@ -211,18 +212,64 @@ shader_param/inside = false
 shader_param/add_margins = true
 
 [sub_resource type="RectangleShape2D" id=21]
-extents = Vector2( 38.5, 29 )
+extents = Vector2( 50.5, 43 )
+
+[sub_resource type="Animation" id=22]
+resource_name = "HidePlayerMessage"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/path = NodePath("Chatboxes/PlayerChatBox:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1357, 667 ), Vector2( 1357, 1218 ) ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "PopPlayerMessage"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("Chatboxes/PlayerChatBox:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1357, 1062 ), Vector2( 1357, 597 ), Vector2( 1357, 667 ) ]
+}
+
+[sub_resource type="Animation" id=25]
+resource_name = "RemainHidden"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Chatboxes/PlayerChatBox:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1357, 1062 ) ]
+}
 
 [node name="World" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="Background" type="Sprite" parent="."]
-scale = Vector2( 2.8, 2.8 )
+position = Vector2( -61, -18 )
+scale = Vector2( 1, 0.972222 )
 texture = ExtResource( 3 )
 centered = false
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.5
@@ -246,6 +293,14 @@ position = Vector2( -644, 610.4 )
 __meta__ = {
 "_editor_description_": ""
 }
+
+[node name="BubbleStartPosition" type="Position2D" parent="KeyPositions"]
+position = Vector2( 1357, 1062 )
+
+[node name="Chatboxes" type="Node2D" parent="."]
+
+[node name="PlayerChatBox" parent="Chatboxes" instance=ExtResource( 13 )]
+position = Vector2( 1357, 1062 )
 
 [node name="Dices" type="Node2D" parent="."]
 
@@ -313,7 +368,7 @@ material = SubResource( 19 )
 texture = ExtResource( 10 )
 
 [node name="CollisionShape2D" parent="Buttons/SmileyButton" index="1"]
-position = Vector2( 1, -0.5 )
+position = Vector2( 1, 1 )
 shape = SubResource( 20 )
 
 [node name="Label" parent="Buttons/SmileyButton" index="3"]
@@ -328,7 +383,7 @@ material = SubResource( 16 )
 texture = ExtResource( 7 )
 
 [node name="CollisionShape2D" parent="Buttons/SadFaceButton" index="1"]
-position = Vector2( 0.5, 1 )
+position = Vector2( 1.5, 0 )
 shape = SubResource( 21 )
 
 [node name="TopicSlot" parent="Buttons/SadFaceButton" index="2"]
@@ -345,12 +400,12 @@ visible = false
 
 [node name="TweenOut" type="Tween" parent="Tweens"]
 
-[node name="Node" type="Node" parent="."]
+[node name="Time" type="Node" parent="."]
 
-[node name="Control" type="Control" parent="Node"]
+[node name="Control" type="Control" parent="Time"]
 anchor_right = 1.0
 
-[node name="TimeLabel" type="Label" parent="Node/Control"]
+[node name="TimeLabel" type="Label" parent="Time/Control"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -40.5
@@ -359,12 +414,23 @@ margin_bottom = 69.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource( 8 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "30"
 align = 1
 valign = 1
 autowrap = true
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "RemainHidden"
+anims/HidePlayerMessage = SubResource( 22 )
+anims/PopPlayerMessage = SubResource( 23 )
+anims/RemainHidden = SubResource( 25 )
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="button_pressed" from="Buttons/TalkButton" to="." method="_on_TalkButton_button_pressed"]
+[connection signal="button_pressed" from="Buttons/FlirtButton" to="." method="_on_FlirtButton_button_pressed"]
+[connection signal="button_pressed" from="Buttons/SmileyButton" to="." method="_on_SmileyButton_button_pressed"]
+[connection signal="button_pressed" from="Buttons/SadFaceButton" to="." method="_on_SadFaceButton_button_pressed"]
 [connection signal="tween_completed" from="Tweens/TweenIn" to="." method="_on_TweenIn_tween_completed"]
 [connection signal="tween_completed" from="Tweens/TweenOut" to="." method="_on_TweenOut_tween_completed"]
 
